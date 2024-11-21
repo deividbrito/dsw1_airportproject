@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title> Aeroporto </title>
 </head>
 <body>
-
+		<jsp:include page="/includes/base.html"></jsp:include>
 </body>
 </html>
