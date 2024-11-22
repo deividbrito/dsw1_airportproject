@@ -15,7 +15,7 @@
     </header>
 
     <main>
-        <form action="loginservlet.do" method="post">
+        <form action="logservlet.do" method="post">
             <div>
                 <label for="username"> Username: </label>
                 <input type="text" id="username" name="username" required>

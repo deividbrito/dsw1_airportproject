@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpSession;
 public class LogServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Credenciais constantes de admin
     private static final String USERNAME_VALIDO = "admin";
     private static final String SENHA_VALIDA = "admin";
     
@@ -21,7 +20,6 @@ public class LogServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        // Verificação de parâmetros vazios/nulos
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             response.sendRedirect("login.jsp?error=invalid");
             return;
@@ -30,7 +28,7 @@ public class LogServlet extends HttpServlet {
         if (USERNAME_VALIDO.equals(username) && SENHA_VALIDA.equals(password)) {
             HttpSession sessao = request.getSession();
             sessao.setAttribute("user", username);
-            response.sendRedirect("homeAdmin.jsp");
+            response.sendRedirect("admin.jsp");
         } else {
             response.sendRedirect("login.jsp?error=true");
         }
