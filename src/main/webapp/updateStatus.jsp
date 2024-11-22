@@ -34,7 +34,7 @@
                 <td><%= flight.getTime() %></td>
                 <td><%= flight.getState().getClass().getSimpleName() %></td>
                 <td>
-                    <form action="updateStatus.do" method="post">
+                    <form action="admin.do?action=sendUpdate" method="post">
                         <input type="hidden" name="flightNumber" value="<%= flight.getFlightNumber() %>">
                         <button type="submit"> Atualizar status </button>
                     </form>

@@ -10,7 +10,7 @@
     <h1>Cadastrar um novo voo:</h1>
     <hr>
 
-    <form action="registerFlight.do" method="post">
+    <form action="admin.do?action=register" method="post">
         <div>
             <label for="flightNumber">Número do voo:</label>
             <input type="number" id="flightNumber" name="flightNumber" required><br><br>

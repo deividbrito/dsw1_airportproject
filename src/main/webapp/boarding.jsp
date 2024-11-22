@@ -18,7 +18,7 @@
         <h2>Voos em embarque:</h2>
         
         <%
-        List<FlightData> flightList = (List<FlightData>) request.getAttribute("embarked");
+        List<FlightData> flightList = (List<FlightData>) request.getAttribute("boarded");
         if (flightList != null && !flightList.isEmpty()) {
         %>
 

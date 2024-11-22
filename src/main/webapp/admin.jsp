@@ -17,9 +17,9 @@
             <nav>
                 <ul>
                     <li><a href="flightRegistration.jsp">Cadastrar um voo</a></li>
-                    <li><a href="updateStatus.do">Atualizar estado</a></li>
+                    <li><a href="admin.do?action=update">Atualizar estado</a></li>
                     <li><a href="index.jsp">Acessar totens</a></li>
-                    <li><a href="logout.do">Sair</a></li>
+                    <li><a href="admin.do?action=logout">Sair</a></li>
                 </ul>
             </nav>
         </section>
