@@ -9,16 +9,12 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import br.edu.ifsp.dsw1.model.entity.FlightDataSingleton;
 
 @WebServlet("/registerFlight.do")
 public class FlightRegistrationServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private FlightDataCollection flightCollection;
-
-    public FlightRegistrationServlet() {
-        this.flightCollection = new FlightDataCollection();
-    }
-
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
@@ -28,6 +24,8 @@ public class FlightRegistrationServlet extends HttpServlet {
 
             FlightData newFlight = new FlightData(flightNumber, airlineCompany, scheduledTime);
             newFlight.setState(Arriving.getInstance());
+            
+            FlightDataCollection flightCollection = FlightDataSingleton.getInstance();
             flightCollection.insertFlight(newFlight);
 
             response.sendRedirect("admin.jsp");
