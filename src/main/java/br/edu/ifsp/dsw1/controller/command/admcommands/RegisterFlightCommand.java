@@ -16,16 +16,39 @@ public class RegisterFlightCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long flightNumber = Long.parseLong(request.getParameter("number"));
+        String flightNumberStr = request.getParameter("number");
         String airlineCompany = request.getParameter("company");
         String arrivalTime = request.getParameter("time");
 
-        FlightData flight = new FlightData(flightNumber, airlineCompany, arrivalTime);
-        flight.setState(Arriving.getInstance());
-
         FlightDataCollection collection = FlightDataSingleton.getInstance();
+
+        Long flightNumber;
+        if (flightNumberStr != null && !flightNumberStr.trim().isEmpty()) {
+            try {
+                flightNumber = Long.parseLong(flightNumberStr);
+            } catch (NumberFormatException e) {
+                request.setAttribute("errorMessageRegistration", "Número de voo inválido.");
+                return "flightRegistration.jsp";
+            }
+        } else {
+            request.setAttribute("errorMessageRegistration", "O número do voo é obrigatório.");
+            return "flightRegistration.jsp";
+        }
+
+        boolean flightExists = collection.getAllFligthts().stream()
+                .anyMatch(f -> f.getFlightNumber().equals(flightNumber));
+
+        if (flightExists) {
+            request.setAttribute("errorMessageRegistration", "Já existe um voo com este número.");
+            return "flightRegistration.jsp";
+        }
+
+        FlightData flight = new FlightData(flightNumber, airlineCompany, arrivalTime);
+        flight.setState(Arriving.getIntance());
         collection.insertFlight(flight);
 
-        return "admin.jsp";
+        request.setAttribute("registrationSuccess", "Voo cadastrado com sucesso.");
+
+        return "flightRegistration.jsp";
     }
 }
